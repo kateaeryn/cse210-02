@@ -1,4 +1,4 @@
-from game.cards import Cards
+from cards import Cards
 
 class Director:
     """A Person who directs the game.
@@ -34,7 +34,7 @@ class Director:
         print("This is Hi-Lo, a guessing game of chance."
         "You will be given a card, then you will guess if the next card will be higher or lower."
         "A correct guess gets you 100 points, an incorrect guess loses you 75 points."
-        "You start the game with 300 points. Good Luck!")
+        "You start the game with 300 points. Good Luck!\n")
        
 
     def play_game(self):
@@ -54,12 +54,13 @@ class Director:
         Args: 
             self(Director): an instance of Director
         """
+        
         self.draw_card = Cards().number
         print(f"The card is : {self.draw_card}")
-        self.guess_card = input("Higher or lower? (h/l)")
+        self.guess_card = input("Higher or lower? (h/l)\n")
         self.next_card = Cards().number
         print(f"The next card is: {self.next_card}")
-        
+    
 
     def get_update(self):    
         
@@ -68,8 +69,10 @@ class Director:
        
         if self.next_card < self.draw_card:
             self.lower = True
+            self.higher = False
         elif self.next_card > self.draw_card:
             self.higher = True
+            self.lower = False
         
         if self.guess_card == "l" and self.lower:
             self.score += 100
@@ -88,10 +91,14 @@ class Director:
             return
         
         score = self.score + self.total_score
-        print(f"Your score is: {score}")
+        print(f"Your score is: {score}\n")
         if score == 0:
             print("Too bad, you lose!")
+            return
         else:
-            play_again = input("Would you like to play again? (y/n)")
+            play_again = input("Would you like to keep guessing? (y/n)")
             self.is_playing = (play_again == "y")
+        
+
+
     

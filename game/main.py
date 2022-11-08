@@ -1,4 +1,4 @@
-from  game.gameplay import Director
+from  gameplay import Director
 
 gameplay = Director()
 gameplay.play_game()
